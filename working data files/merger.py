@@ -19,18 +19,11 @@ def main():
     #dfFinalData['JD'] = dfFinalData['JD'].astype(float)
     #dfCarrington['JD'] = dfCarrington['JD'].astype(float)
 
-    finaldataRC = dfFinalData.shape[0]
-    carringtonRC = dfCarrington.shape[0]
-
-    print(finaldataRC)
-    print(carringtonRC)
-
     N = len(dfFinalData)
     M = len(dfCarrington)
 
-
+    '''
     #algorithm for assigning the correct carrington number to each date
-    print(str(N))
     current = 1
     for j in range(0,N):
         if(dfFinalData.DateInt[j] < dfCarrington.DateInt[current]):
@@ -41,13 +34,21 @@ def main():
             dfFinalData.Rotation[j] = dfCarrington.Rotation[current-1]
         print(str(j))
 
-
-
-
-
     dfFinalData.to_csv("finaldata.csv",index=False)
-
+    '''
     #dfCarrington.to_csv("carrington.csv",index=False)
+
+    c = 0
+    for j in range(161587,N):
+        if(dfFinalData.Rotation[j] == dfThetaNPhiN.Rotation[c]):
+            dfFinalData.ThetaN[j] = dfThetaNPhiN.ThetaN[c]
+            dfFinalData.PhiN[j] = dfThetaNPhiN.PhiN[c]
+        else:
+            c = c+1
+            
+        print(str(j))    
+
+    dfFinalData.to_csv("finaldata.csv", index=False)
 
 if __name__ == "__main__":
     main()
