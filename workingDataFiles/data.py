@@ -4,7 +4,6 @@ import numpy as np
 
 def ThetaD(theta,phi,thetaN,phiN):
     #thetad = math.acos(((math.cos(thetaN)*math.cos(theta)) + (math.sin(thetaN)*math.sin(theta)*math.cos(phi - phiN))))
-
     thetad2 = np.degrees(np.arccos(((np.cos(thetaN)*np.cos(theta)) +
         (np.sin(thetaN)*np.sin(theta)*np.cos(phi - phiN)))))
 
